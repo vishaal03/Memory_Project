@@ -1,0 +1,51 @@
+module memory(clk_i,rst_i,wr_rd,addr_i,write_i,read_o,valid_i,ready_o);
+
+parameter WIDTH=16;
+parameter DEPTH=64;
+parameter ADDR =$clog2(DEPTH);
+
+input clk_i,
+      rst_i,
+      wr_rd,
+      valid_i;
+
+input  [WIDTH-1:0] write_i;
+input  [ADDR-1:0]  addr_i;
+
+output reg [WIDTH-1:0]read_o;
+output reg ready_o;
+
+integer i;
+
+
+reg [WIDTH-1:0] mem [DEPTH-1:0];
+
+always@(posedge clk_i)
+begin
+    if(rst_i==1)begin
+       read_o=0;
+       ready_o=0;
+       for(i=0;i<DEPTH;i=i+1)
+           mem[i]=0;
+   end
+
+       else begin
+           if(valid_i==1)begin
+               ready_o=1;
+               if(wr_rd==1) mem[addr_i] = write_i;
+               else read_o = mem[addr_i];
+           end
+           
+           else ready_o=0;
+       
+   end
+end
+endmodule
+
+
+
+
+
+
+
+
