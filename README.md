@@ -47,7 +47,9 @@ This repository contains a synthesizable, parameterized **Static RAM (SRAM)** de
 ### Prerequisites
 You will need a Verilog simulator like **Icarus Verilog**, **ModelSim**, or **Vivado**.
 
-### Running Simulation (MODEL SIM OR QUESTA SIM)
+### Running Simulation (MODEL SIM )
 To compile and run the testbench with a specific command (e.g., WRITE):
+
+Use the .do file for simulation purposes
 
 
